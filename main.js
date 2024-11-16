@@ -24,6 +24,8 @@ connection
     console.log("Erro ao conectar com o banco de dados:", error);
   });
 
+app.use("/", categoriesController);
+
 // Rotas
 app.get("/", (req, res) => {
   res.render("index");
