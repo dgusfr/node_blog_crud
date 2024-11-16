@@ -1,7 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const connection = require("./database/database");
-const categoriesController = require("./categories/CategoriesController");
+const articlesController = require("./controllers/ArticlesControllers");
+const categoriesController = require("./controllers/CategoriesController");
+
 const app = express();
 
 // Configuração do template engine
@@ -24,7 +26,9 @@ connection
     console.log("Erro ao conectar com o banco de dados:", error);
   });
 
+//Use Controllers
 app.use("/", categoriesController);
+app.use("/", articlesController);
 
 // Rotas
 app.get("/", (req, res) => {
