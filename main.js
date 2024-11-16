@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const connection = require("./database/database");
-
+const categoriesController = require("./categories/CategoriesController");
 const app = express();
 
 // Configuração do template engine
