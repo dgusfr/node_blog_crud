@@ -9,7 +9,6 @@ Este é um projeto de blog desenvolvido com **Node.js**, **Express** e **MySQL**
 ## Tecnologias Utilizadas
 
 - **Node.js**: Servidor backend.
-- **Express**: Framework para criação de rotas e middlewares.
 
 ---
 
