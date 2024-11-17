@@ -37,31 +37,52 @@ Este é um projeto de blog desenvolvido com **Node.js**, **Express** e **MySQL**
 ```
 NODE_BLOG_CRUD/
 │
-├── controllers/ # Controladores para lógica de negócio
+├── controllers/
 │ ├── ArticlesController.js
 │ ├── CategoriesController.js
 │
-├── models/ # Modelos Sequelize (Banco de Dados)
+├── models/
 │ ├── Article.js
 │ ├── Category.js
 │
-├── views/ # Templates EJS
-│ ├── partials/ # Componentes reutilizáveis (header, footer)
+├── views/
+│ ├── partials/
 │ │ ├── header.ejs
 │ │ ├── footer.ejs
 │ ├── index.ejs
 │
-├── public/ # Arquivos estáticos
+├── public/
 │ ├── css/
 │ │ ├── styles.css
 │ ├── js/
 │ │ ├── scripts.js
 │ ├── images/
 │
-├── database/ # Configuração do banco de dados
+├── database/
 │ ├── database.js
 │
-├── main.js # Arquivo principal do servidor
-├── package.json # Dependências do projeto
-└── .gitignore # Arquivos ignorados no versionamento
+├── main.js
+├── package.json
+└── .gitignore
 ```
+
+---
+
+## Configuração do Banco de Dados
+
+O banco de dados deve ser configurado no arquivo `database.js`. Exemplo de conexão:
+
+```javascript
+const Sequelize = require("sequelize");
+
+const connection = new Sequelize("blog_crud", "root", "1234", {
+  host: "localhost",
+  dialect: "mysql",
+});
+
+module.exports = connection;
+```
+
+## Autor
+
+Desenvolvido por Diego Franco
