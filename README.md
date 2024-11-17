@@ -12,7 +12,6 @@ Este é um projeto de blog desenvolvido com **Node.js**, **Express** e **MySQL**
 - **Express**: Framework para criação de rotas e middlewares.
 - **Sequelize**: ORM utilizado para manipulação do banco de dados MySQL.
 - **EJS**: Template engine para renderização de views.
-- **MySQL**: Banco de dados relacional para armazenamento de dados.
 
 ---
 
