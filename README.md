@@ -33,3 +33,35 @@ Este é um projeto de blog desenvolvido com **Node.js**, **Express** e **MySQL**
 ---
 
 ## Estrutura do Projeto
+
+```
+NODE_BLOG_CRUD/
+│
+├── controllers/ # Controladores para lógica de negócio
+│ ├── ArticlesController.js
+│ ├── CategoriesController.js
+│
+├── models/ # Modelos Sequelize (Banco de Dados)
+│ ├── Article.js
+│ ├── Category.js
+│
+├── views/ # Templates EJS
+│ ├── partials/ # Componentes reutilizáveis (header, footer)
+│ │ ├── header.ejs
+│ │ ├── footer.ejs
+│ ├── index.ejs
+│
+├── public/ # Arquivos estáticos
+│ ├── css/
+│ │ ├── styles.css
+│ ├── js/
+│ │ ├── scripts.js
+│ ├── images/
+│
+├── database/ # Configuração do banco de dados
+│ ├── database.js
+│
+├── main.js # Arquivo principal do servidor
+├── package.json # Dependências do projeto
+└── .gitignore # Arquivos ignorados no versionamento
+```
