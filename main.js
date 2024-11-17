@@ -3,8 +3,8 @@ const bodyParser = require("body-parser");
 const connection = require("./database/database");
 
 // Controllers
-const articlesController = require("./controllers/ArticleController");
-const categoriesController = require("./controllers/CategoryController");
+const articlesController = require("./controllers/ArticlesControllers");
+const categoriesController = require("./controllers/CategoriesController");
 
 // Models
 const Article = require("./models/Article");
