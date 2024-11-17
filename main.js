@@ -29,8 +29,8 @@ connection
   });
 
 // Rotas
-app.use("/articles", articlesController);
-app.use("/categories", categoriesController);
+app.use("/", articlesController);
+app.use("/", categoriesController);
 
 app.get("/", (req, res) => {
   res.render("index");
