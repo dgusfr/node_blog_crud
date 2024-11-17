@@ -4,7 +4,11 @@
 
 Este é um projeto de blog desenvolvido com **Node.js**, **Express** e **MySQL** para gerenciar artigos e categorias. Ele permite realizar operações de CRUD (Create, Read, Update, Delete) tanto para artigos quanto para categorias.
 
-Este projeto utiliza a arquitetura MVC
+Este projeto utiliza padrão de arquitetura de software MVC que divide uma aplicação em três camadas: Model (modelo), View (visão) e Controller (controle).
+
+<div align="center">
+  <img src="img/mvc.png" alt="Imagem da" width="900">
+</div>
 
 ---
 
