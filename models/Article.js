@@ -1,23 +1,27 @@
 const Sequelize = require("sequelize");
 const connection = require("../database/database");
-const Category = require("../models/Category");
+const Category = require("./Category");
 
 const Article = connection.define("articles", {
   title: {
     type: Sequelize.STRING,
-    ALLOWnULL: false,
+    allowNull: false,
   },
   slug: {
     type: Sequelize.STRING,
     allowNull: false,
   },
   body: {
-    type: Sequilized.TEXT,
+    type: Sequelize.TEXT, // Corrigido Sequilized para Sequelize
     allowNull: false,
   },
 });
 
+// Relacionamentos
 Category.hasMany(Article);
 Article.belongsTo(Category);
 
-modules.exports = Article;
+// Sincronização
+Article.sync({ force: false });
+
+module.exports = Article;

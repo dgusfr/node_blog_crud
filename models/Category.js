@@ -4,7 +4,7 @@ const connection = require("../database/database");
 const Category = connection.define("categories", {
   title: {
     type: Sequelize.STRING,
-    ALLOWnULL: false,
+    allowNull: false,
   },
   slug: {
     type: Sequelize.STRING,
@@ -12,4 +12,7 @@ const Category = connection.define("categories", {
   },
 });
 
-modules.exports = Category;
+// Sincronização
+Category.sync({ force: false });
+
+module.exports = Category;
