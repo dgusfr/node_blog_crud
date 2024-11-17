@@ -1,6 +1,6 @@
 # Node Blog CRUD
 
-## Descrição
+### Descrição
 
 Este é um projeto de blog desenvolvido com **Node.js**, **Express** e **MySQL** para gerenciar artigos e categorias. Ele permite realizar operações de CRUD (Create, Read, Update, Delete) tanto para artigos quanto para categorias.
 
