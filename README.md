@@ -6,10 +6,6 @@ Este é um projeto de blog desenvolvido com **Node.js**, **Express** e **MySQL**
 
 ---
 
-## Tecnologias Utilizadas
-
----
-
 ## Funcionalidades
 
 1. **CRUD de Categorias**:
