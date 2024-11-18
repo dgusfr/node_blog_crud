@@ -24,4 +24,6 @@ router.post("/categories/save", (req, res) => {
   }
 });
 
+router.get("/admin/categories", (req, res) => {});
+
 module.exports = router;
