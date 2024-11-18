@@ -9,7 +9,10 @@ router.get("/admin/categories/new", (req, res) => {
 router.get("/categories/save", (req, res) => {
   const title = req.body.title;
   if (title != undefined) {
-    Category.create;
+    Category.create({
+      title: title
+      slug: "Dese"
+    });
   } else {
     res.redirect("/admin/categories/new");
   }
