@@ -7,5 +7,7 @@ router.get("/admin/categories/new", (req, res) => {
 
 router.get("/categories/save", (req, res) => {
   const title = req.body.title;
+  if (title != undefined) {
+  }
 });
 module.exports = router;
