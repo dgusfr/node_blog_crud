@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const Category = require("../models/Category");
-const slugify = require("slugify");
 
 // Página de novo cadastro
 router.get("/categories/new", (req, res) => {
@@ -15,7 +14,7 @@ router.post("/categories/save", (req, res) => {
   if (title != undefined) {
     Category.create({
       title: title,
-      slug: slugify(title),
+      slug: require("slugify")(title),
     }).then(() => {
       res.redirect("/admin/categories");
     });
@@ -24,7 +23,7 @@ router.post("/categories/save", (req, res) => {
   }
 });
 
-// Listagem de categorias
+// Rota para listar categorias
 router.get("/categories", (req, res) => {
   res.render("admin/categories/index");
 });
