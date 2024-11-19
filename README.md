@@ -12,6 +12,10 @@ Este projeto utiliza padrão de arquitetura de software MVC que divide uma aplic
 
 ---
 
+## Tecnologias Utilizadas
+
+---
+
 ## Funcionalidades
 
 1. **CRUD de Categorias**:
