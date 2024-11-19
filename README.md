@@ -14,6 +14,11 @@ Este projeto utiliza padrão de arquitetura de software MVC que divide uma aplic
 
 ## Tecnologias Utilizadas
 
+<div style="display: flex; flex-direction: row;">
+  <div style="margin-right: 20px; display: flex; justify-content: flex-start;">
+    <img src="img/js.png" alt="Logo Linguagem" width="100"/>
+  </div>
+
 ---
 
 ## Funcionalidades
