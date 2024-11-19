@@ -25,7 +25,9 @@ router.post("/categories/save", (req, res) => {
 
 // Rota para listar categorias
 router.get("/categories", (req, res) => {
-  res.render("admin/categories/index");
+  Category.findAll().then((categories) => {
+    res.render("admin/categories/index", { categorie });
+  });
 });
 
 module.exports = router;
