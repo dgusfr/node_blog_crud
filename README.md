@@ -22,7 +22,7 @@ Este projeto utiliza padrão de arquitetura de software MVC que divide uma aplic
     <img src="img/html.png" alt="Logo Linguagem" width="100"/>
   </div>
   <div style="margin-right: 20px; display: flex; justify-content: flex-start;">
-    <img src="/public/images/bootstrap.png" alt="Logo " width="100"/>
+    <img src="/public/images/bootstrap.png" alt="Logo Bootstrap" width="100"/>
   </div>
 </div>
 
