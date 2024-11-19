@@ -30,4 +30,25 @@ router.get("/categories", (req, res) => {
   });
 });
 
+router.post("/categories/delete", (req, res) => {
+  const id = req.body.id;
+
+  if (id && !isNaN(id)) {
+    Category.destroy({
+      where: {
+        id: id,
+      },
+    })
+      .then(() => {
+        res.redirect("/admin/categories");
+      })
+      .catch((err) => {
+        console.error("Erro ao deletar categoria:", err);
+        res.redirect("/admin/categories");
+      });
+  } else {
+    res.redirect("/admin/categories");
+  }
+});
+
 module.exports = router;
