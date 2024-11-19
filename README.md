@@ -6,6 +6,8 @@ Este é um projeto de blog desenvolvido com **Node.js**, **Express** e **MySQL**
 
 Este projeto utiliza padrão de arquitetura de software MVC que divide uma aplicação em três camadas: Model (modelo), View (visão) e Controller (controle).
 
+<br>
+
 <div align="center">
   <img src="public/images/mvc.jpg" alt="Imagem da Arquitetura" width="600">
 </div>
