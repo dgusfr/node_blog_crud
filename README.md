@@ -30,6 +30,12 @@ Este projeto utiliza padrão de arquitetura de software MVC que divide uma aplic
 
 ---
 
+## Status
+
+![Em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=RED&style=for-the-badge)
+
+---
+
 ## Funcionalidades
 
 1. **CRUD de Categorias**:
