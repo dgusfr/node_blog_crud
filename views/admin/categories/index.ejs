@@ -42,6 +42,7 @@
     <%- include("../../partials/footer.ejs") %>
       <script>
         function confirmDelete(event) {
-
+          event.preventDefault();
+          console.log("Formulário não enviado")
         }
       </script>
