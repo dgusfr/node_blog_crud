@@ -29,7 +29,7 @@
               </td>
               <td>
                 <a href="/admin/categories/edit/<%= category.id %>" class="btn btn-warning btn-sm">Editar</a>
-                <form method="POST" action="/categories/delete" style="display: inline;" onsubmit="confirmDelete(event)">
+                <form method="POST" action="/categories/delete" style="display: inline;" onsubmit="confirmDelete(event, this)">
                   <input type="hidden" name="id" value="<%= category.id %>">
                   <a href="/admin/categories/delete/<%= category.id %>" class="btn btn-danger btn-sm">Excluir</a>
                 </form>
@@ -41,13 +41,10 @@
     </div>
     <%- include("../../partials/footer.ejs") %>
       <script>
-        function confirmDelete(event) {
+        function confirmDelete(event, form) {
           event.preventDefault();
           const decision = confirm("Deseja deletar essa categoria?")
           if (decision) {
-            console.log("Categoria Deletada!")
-          } else {
-            console.log("Categoria não Deletada!")
+            form.submit()
           }
-        }
       </script>
