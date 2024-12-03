@@ -12,9 +12,13 @@ const Category = connection.define("categories", {
   },
 });
 
-// Cria a tabela se ela ainda não existir
-Category.sync({ force: false }).then(() => {
-  console.log("Tabela 'categories' criada ou já existe.");
-});
+// Sincroniza o modelo com o banco de dados
+Category.sync({ force: false })
+  .then(() => {
+    console.log("Tabela 'categories' sincronizada com sucesso.");
+  })
+  .catch((error) => {
+    console.error("Erro ao sincronizar tabela 'categories':", error);
+  });
 
 module.exports = Category;

@@ -4,7 +4,7 @@ const Category = require("../models/Category");
 const slugify = require("slugify");
 
 // Página para criar uma nova categoria
-router.get("/admin/categories/new", (req, res) => {
+router.get("/categories/new", (req, res) => {
   res.render("admin/categories/new");
 });
 
@@ -30,7 +30,7 @@ router.post("/categories/save", (req, res) => {
 });
 
 // Rota para listar todas as categorias
-router.get("/admin/categories", (req, res) => {
+router.get("/categories", (req, res) => {
   Category.findAll()
     .then((categories) => {
       res.render("admin/categories/index", { categories: categories });
@@ -62,9 +62,10 @@ router.post("/categories/delete", (req, res) => {
 });
 
 // Rota para exibir o formulário de edição de categoria
-router.get("/admin/categories/edit/:id", async (req, res) => {
+router.get("/categories/edit/:id", async (req, res) => {
   const id = req.params.id;
 
+  // Verifica se o ID é um número válido
   if (isNaN(id)) {
     return res.redirect("/admin/categories");
   }

@@ -3,25 +3,23 @@
 
     <div class="container">
       <hr>
-      <div class="card">
-        <div class="card-header">
-          <h2>Edição de Categoria</h2>
-        </div>
-        <div class="card-body">
-          <form method="POST" action="/categories/update">
-            <!-- Campo de Título -->
-            <div class="form-group">
-              <label for="title">Título</label>
-              <input class="form-control" type="text" id="title" name="title" placeholder="Defina o título da categoria" value="<%= category.title %>" required>
-            </div>
+      <div class="card-header">
+        <h2>Edição de Categoria</h2>
+      </div>
+      <div class="card-body">
+        <form action="/admin/categories/update" method="POST">
+          <!-- Campo Oculto para o ID da Categoria -->
+          <input type="hidden" name="id" value="<%= category.id %>">
 
-            <!-- Campo Oculto para ID -->
-            <input type="hidden" name="id" value="<%= category.id %>">
+          <!-- Campo para o Título da Categoria -->
+          <div class="form-group">
+            <label for="title">Título</label>
+            <input type="text" id="title" name="title" class="form-control" placeholder="Defina o título da categoria" value="<%= category.title %>" required>
+          </div>
 
-            <!-- Botão de Atualizar -->
-            <button class="btn btn-success mt-3" type="submit">Atualizar</button>
-          </form>
-        </div>
+          <br>
+          <button class="btn btn-success" type="submit">Atualizar</button>
+        </form>
       </div>
     </div>
 
