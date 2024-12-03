@@ -61,10 +61,8 @@ router.get("/categories/edit/:id", (req, res) => {
   Category.findByPk(id)
     .then((category) => {
       if (category) {
-        // Renderiza a página de edição com os dados da categoria
         res.render("admin/categories/edit", { category: category });
       } else {
-        // Redireciona caso a categoria não exista
         res.redirect("/admin/categories");
       }
     })
