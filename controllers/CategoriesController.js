@@ -51,17 +51,27 @@ router.post("/categories/delete", (req, res) => {
   }
 });
 
-router.get("/admin/categories/edit/:id", (req, res) => {
+router.get("/categories/edit/:id", (req, res) => {
   const id = req.params.id;
-  Category.findByPK(id)
-    .then((categoria) => {
-      if (!categoria) {
+
+  if (isNaN(id)) {
+    return res.redirect("/admin/categories");
+  }
+
+  Category.findByPk(id)
+    .then((category) => {
+      if (category) {
+        // Renderiza a página de edição com os dados da categoria
+        res.render("admin/categories/edit", { category: category });
       } else {
+        // Redireciona caso a categoria não exista
         res.redirect("/admin/categories");
       }
     })
-    .catch((erro) => {
-      res.redirect("/admin/categopries");
+    .catch((error) => {
+      console.error("Erro ao buscar categoria:", error);
+      res.redirect("/admin/categories");
     });
 });
+
 module.exports = router;
