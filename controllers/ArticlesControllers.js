@@ -4,24 +4,17 @@ const Category = require("../models/Category");
 const Article = require("../models/Article");
 const slugify = require("slugify");
 
-// Rota para listar artigos (teste)
+// Rota para listar artigos
 router.get("/admin/articles", (req, res) => {
-  Article.findAll()
+  Article.findAll({
+    include: [{ model: Category }], // Inclui as categorias associadas
+  })
     .then((articles) => {
-      if (articles.length > 0) {
-        res.send(
-          "Artigos criados com sucesso! Aqui está a lista de artigos: " +
-            JSON.stringify(articles, null, 2)
-        );
-      } else {
-        res.send(
-          "Nenhum artigo encontrado. Verifique se o cadastro está funcionando."
-        );
-      }
+      res.render("admin/articles/index", { articles: articles });
     })
     .catch((error) => {
       console.error("Erro ao buscar artigos:", error);
-      res.status(500).send("Erro ao buscar artigos.");
+      res.redirect("/admin");
     });
 });
 
