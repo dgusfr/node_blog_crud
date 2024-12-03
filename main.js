@@ -12,7 +12,7 @@ const Category = require("./models/Category");
 
 const app = express();
 
-// Configurações
+// Configurações do Express
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -22,30 +22,44 @@ app.use(express.static("public"));
 connection
   .authenticate()
   .then(() => {
-    console.log("Conexão feita com sucesso");
+    console.log("Conexão feita com sucesso!");
   })
   .catch((error) => {
-    console.log("Erro ao conectar com o banco de dados:", error);
+    console.error("Erro ao conectar com o banco de dados:", error);
   });
 
-// Rotas
+// Sincronização dos Modelos (opcional)
+Article.sync({ force: false }).then(() => {
+  console.log("Tabela 'articles' sincronizada com sucesso.");
+});
+Category.sync({ force: false }).then(() => {
+  console.log("Tabela 'categories' sincronizada com sucesso.");
+});
+
+// Rotas principais
 app.use("/admin", categoriesController);
 app.use("/", articlesController);
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
-
-//HomePage
+// Página inicial
 app.get("/", (req, res) => {
   Article.findAll({
     order: [["id", "DESC"]],
     limit: 4,
-  }).then((articles) => {
-    Category.findAll().then((categories) => {
-      res.render("index", { articles: articles, categories: categories });
+  })
+    .then((articles) => {
+      Category.findAll()
+        .then((categories) => {
+          res.render("index", { articles: articles, categories: categories });
+        })
+        .catch((error) => {
+          console.error("Erro ao carregar categorias:", error);
+          res.redirect("/admin/categories");
+        });
+    })
+    .catch((error) => {
+      console.error("Erro ao carregar artigos:", error);
+      res.redirect("/admin/articles");
     });
-  });
 });
 
 // Inicialização do servidor

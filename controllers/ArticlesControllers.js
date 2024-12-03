@@ -59,20 +59,16 @@ router.post("/admin/articles/save", (req, res) => {
 });
 
 //Rota para deletar o artigo
-router.post("/admin/articles/delete", adminAuth, (req, res) => {
+router.post("/admin/articles/delete", (req, res) => {
   const id = req.body.id;
 
   if (id && !isNaN(id)) {
     Article.destroy({
-      where: {
-        id: id,
-      },
+      where: { id: id },
     })
-      .then(() => {
-        res.redirect("/admin/articles");
-      })
+      .then(() => res.redirect("/admin/articles"))
       .catch((error) => {
-        console.error("Erro ao deletar artigo:", error);
+        console.error("Erro ao deletar o artigo:", error);
         res.redirect("/admin/articles");
       });
   } else {
