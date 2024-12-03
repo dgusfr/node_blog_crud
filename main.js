@@ -36,6 +36,18 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+//HomePage
+app.get("/", (req, res) => {
+  Article.findAll({
+    order: [["id", "DESC"]],
+    limit: 4,
+  }).then((articles) => {
+    Category.findAll().then((categories) => {
+      res.render("index", { articles: articles, categories: categories });
+    });
+  });
+});
+
 // Inicialização do servidor
 app.listen(3000, () => {
   console.log("O servidor está rodando na porta 3000!");
