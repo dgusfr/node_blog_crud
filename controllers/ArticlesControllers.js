@@ -4,6 +4,27 @@ const Category = require("../models/Category");
 const Article = require("../models/Article");
 const slugify = require("slugify");
 
+// Rota para listar artigos (teste)
+router.get("/admin/articles", (req, res) => {
+  Article.findAll()
+    .then((articles) => {
+      if (articles.length > 0) {
+        res.send(
+          "Artigos criados com sucesso! Aqui está a lista de artigos: " +
+            JSON.stringify(articles, null, 2)
+        );
+      } else {
+        res.send(
+          "Nenhum artigo encontrado. Verifique se o cadastro está funcionando."
+        );
+      }
+    })
+    .catch((error) => {
+      console.error("Erro ao buscar artigos:", error);
+      res.status(500).send("Erro ao buscar artigos.");
+    });
+});
+
 // Rota para exibir o formulário de criação de um novo artigo
 router.get("/admin/articles/new", (req, res) => {
   Category.findAll()
@@ -17,14 +38,14 @@ router.get("/admin/articles/new", (req, res) => {
 });
 
 // Rota para salvar o artigo
-router.post("/articles/save", (req, res) => {
+router.post("/admin/articles/save", (req, res) => {
+  console.log("Dados recebidos do formulário:", req.body);
   const title = req.body.title;
   const body = req.body.body;
   const category = req.body.category;
 
-  // Verifica se os campos obrigatórios foram preenchidos
   if (!title || !body || !category) {
-    console.error("Erro: Campos obrigatórios não preenchidos.");
+    console.error("Campos obrigatórios não preenchidos.");
     return res.redirect("/admin/articles/new");
   }
 
@@ -35,6 +56,7 @@ router.post("/articles/save", (req, res) => {
     categoryId: category,
   })
     .then(() => {
+      console.log("Artigo criado com sucesso!");
       res.redirect("/admin/articles");
     })
     .catch((error) => {

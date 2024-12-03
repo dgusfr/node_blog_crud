@@ -12,16 +12,12 @@ const Article = connection.define("articles", {
     allowNull: false,
   },
   body: {
-    type: Sequelize.TEXT, // Corrigido Sequilized para Sequelize
+    type: Sequelize.TEXT,
     allowNull: false,
   },
 });
 
-// Relacionamentos
-Category.hasMany(Article);
-Article.belongsTo(Category);
-
-// Sincronização
-// Article.sync({ force: false });
+Category.hasMany(Article); // Uma categoria tem muitos artigos
+Article.belongsTo(Category); // Um artigo pertence a uma categoria
 
 module.exports = Article;
