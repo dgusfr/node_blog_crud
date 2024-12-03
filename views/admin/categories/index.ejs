@@ -43,6 +43,11 @@
       <script>
         function confirmDelete(event) {
           event.preventDefault();
-          console.log("Deseja deletar essa categoria?")
+          const decision = confirm("Deseja deletar essa categoria?")
+          if (decision) {
+            console.log("Categoria Deletada!")
+          } else {
+            console.log("Categoria não Deletada!")
+          }
         }
       </script>
