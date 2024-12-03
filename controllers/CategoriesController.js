@@ -67,7 +67,7 @@ router.get("/categories/edit/:id", (req, res) => {
       }
     })
     .catch((error) => {
-      console.error("Erro ao buscar categoria:", error);
+      console.error("Erro ao buscar a categoria:", error);
       res.redirect("/admin/categories");
     });
 });
