@@ -7,7 +7,7 @@ const slugify = require("slugify");
 // Rota para listar artigos
 router.get("/admin/articles", (req, res) => {
   Article.findAll({
-    include: [{ model: Category }], // Inclui as categorias associadas
+    include: [{ model: Category }],
   })
     .then((articles) => {
       res.render("admin/articles/index", { articles: articles });
