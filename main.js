@@ -5,8 +5,8 @@ const session = require("express-session");
 const connection = require("./database/database");
 
 // Controllers
-const categoriesController = require("./controllers/CategoriesController");
 const articlesController = require("./controllers/ArticlesController");
+const categoriesController = require("./controllers/CategoriesController");
 const usersController = require("./controllers/UsersController");
 
 // Models
@@ -15,37 +15,28 @@ const Category = require("./models/Category");
 const User = require("./models/User");
 
 // Configurações
-// View Engine
 app.set("view engine", "ejs");
 
-// Sessions
 app.use(
   session({
-    secret: "sua-chave-secreta-segura",
+    secret: "sua-chave-secreta",
     cookie: { maxAge: 30000000 },
   })
 );
 
-// Arquivos Estáticos
 app.use(express.static("public"));
-
-// Body Parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Banco de Dados
+// Conexão com o Banco de Dados
 connection
   .authenticate()
-  .then(() => {
-    console.log("Conexão feita com sucesso!");
-  })
-  .catch((error) => {
-    console.error("Erro ao conectar ao banco de dados:", error);
-  });
+  .then(() => console.log("Conexão feita com sucesso!"))
+  .catch((error) => console.error("Erro ao conectar:", error));
 
 // Rotas
-app.use("/", categoriesController);
 app.use("/", articlesController);
+app.use("/", categoriesController);
 app.use("/", usersController);
 
 // Home Page
@@ -56,7 +47,7 @@ app.get("/", (req, res) => {
   })
     .then((articles) => {
       Category.findAll().then((categories) => {
-        res.render("index", { articles: articles, categories: categories });
+        res.render("index", { articles, categories });
       });
     })
     .catch((error) => {
@@ -65,14 +56,14 @@ app.get("/", (req, res) => {
     });
 });
 
-// Página do Artigo
+// Artigo Específico
 app.get("/:slug", (req, res) => {
   const slug = req.params.slug;
-  Article.findOne({ where: { slug: slug } })
+  Article.findOne({ where: { slug } })
     .then((article) => {
       if (article) {
         Category.findAll().then((categories) => {
-          res.render("article", { article: article, categories: categories });
+          res.render("article", { article, categories });
         });
       } else {
         res.redirect("/");
@@ -84,20 +75,17 @@ app.get("/:slug", (req, res) => {
     });
 });
 
-// Página de Categorias
+// Categoria Específica
 app.get("/category/:slug", (req, res) => {
   const slug = req.params.slug;
   Category.findOne({
-    where: { slug: slug },
+    where: { slug },
     include: [{ model: Article }],
   })
     .then((category) => {
       if (category) {
         Category.findAll().then((categories) => {
-          res.render("index", {
-            articles: category.articles,
-            categories: categories,
-          });
+          res.render("index", { articles: category.articles, categories });
         });
       } else {
         res.redirect("/");
@@ -109,7 +97,5 @@ app.get("/category/:slug", (req, res) => {
     });
 });
 
-// Inicialização do Servidor
-app.listen(3000, () => {
-  console.log("O servidor está rodando na porta 3000!");
-});
+// Inicialização
+app.listen(3000, () => console.log("O servidor está rodando na porta 3000!"));
