@@ -5,9 +5,9 @@ const User = connection.define("users", {
   email: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true, // Garante que o e-mail seja único
+    unique: true,
     validate: {
-      isEmail: true, // Verifica se é um e-mail válido
+      isEmail: true,
     },
   },
   password: {
