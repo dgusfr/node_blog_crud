@@ -151,8 +151,8 @@ router.get("/articles/page/:num", (req, res) => {
       const result = {
         page: page,
         next: next,
-        articles: articles.rows, // `rows` contém os artigos
-        count: articles.count, // Total de artigos
+        articles: articles.rows,
+        count: articles.count,
       };
 
       Category.findAll()
