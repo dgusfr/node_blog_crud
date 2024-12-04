@@ -138,12 +138,12 @@ router.post("/articles/update", (req, res) => {
 router.get("/articles/page/:num", (req, res) => {
   const page = parseInt(req.params.num) || 1;
   const limit = 4;
-  const offset = (page - 1) * limit; // Calcula o offset
+  const offset = (page - 1) * limit;
 
   Article.findAndCountAll({
     limit: limit,
     offset: offset,
-    order: [["id", "DESC"]], // Ordena os artigos por ID em ordem decrescente
+    order: [["id", "DESC"]],
   })
     .then((articles) => {
       const next = offset + limit < articles.count; // Verifica se há mais páginas
