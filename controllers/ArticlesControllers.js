@@ -146,7 +146,7 @@ router.get("/articles/page/:num", (req, res) => {
     order: [["id", "DESC"]],
   })
     .then((articles) => {
-      const next = offset + limit < articles.count; // Verifica se há mais páginas
+      const next = offset + limit < articles.count;
 
       const result = {
         page: page,
