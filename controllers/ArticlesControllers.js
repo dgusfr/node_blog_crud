@@ -143,7 +143,6 @@ router.get("/articles/page/:num", (req, res) => {
   Article.findAndCountAll({
     limit: limit,
     offset: offset,
-    order: [["id", "DESC"]],
   })
     .then((articles) => {
       const next = offset + limit < articles.count;
@@ -151,8 +150,7 @@ router.get("/articles/page/:num", (req, res) => {
       const result = {
         page: page,
         next: next,
-        articles: articles.rows,
-        count: articles.count,
+        articles: articles,
       };
 
       Category.findAll()
