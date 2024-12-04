@@ -104,4 +104,34 @@ router.get("/admin/articles/edit/:id", (req, res) => {
     });
 });
 
+//Rota de atualização do artigo
+router.post("/articles/update", adminAuth, (req, res) => {
+  const { id, title, body, category } = req.body;
+
+  if (!id || !title || !body || !category) {
+    console.error("Campos obrigatórios faltando na requisição.");
+    return res.redirect(`/admin/articles/edit/${id}`);
+  }
+
+  Article.update(
+    {
+      title: title,
+      body: body,
+      categoryId: category,
+      slug: slugify(title),
+    },
+    {
+      where: { id: id },
+    }
+  )
+    .then(() => {
+      console.log(`Artigo ${id} atualizado com sucesso.`);
+      res.redirect("/admin/articles");
+    })
+    .catch((err) => {
+      console.error("Erro ao atualizar o artigo:", err);
+      res.redirect(`/admin/articles/edit/${id}`);
+    });
+});
+
 module.exports = router;
