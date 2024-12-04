@@ -105,7 +105,7 @@ router.get("/admin/articles/edit/:id", (req, res) => {
 });
 
 //Rota de atualização do artigo
-router.post("/articles/update", adminAuth, (req, res) => {
+router.post("/articles/update", (req, res) => {
   const { id, title, body, category } = req.body;
 
   if (!id || !title || !body || !category) {
