@@ -134,4 +134,43 @@ router.post("/articles/update", (req, res) => {
     });
 });
 
+//Rota de paginação
+router.get("/articles/page/:num", (req, res) => {
+  const page = parseInt(req.params.num) || 1;
+  const limit = 4; // Número de artigos por página
+  const offset = (page - 1) * limit; // Calcula o offset
+
+  Article.findAndCountAll({
+    limit: limit,
+    offset: offset,
+    order: [["id", "DESC"]], // Ordena os artigos por ID em ordem decrescente
+  })
+    .then((articles) => {
+      const next = offset + limit < articles.count; // Verifica se há mais páginas
+
+      const result = {
+        page: page,
+        next: next,
+        articles: articles.rows, // `rows` contém os artigos
+        count: articles.count, // Total de artigos
+      };
+
+      Category.findAll()
+        .then((categories) => {
+          res.render("admin/articles/page", {
+            result: result,
+            categories: categories,
+          });
+        })
+        .catch((error) => {
+          console.error("Erro ao carregar categorias:", error);
+          res.redirect("/");
+        });
+    })
+    .catch((error) => {
+      console.error("Erro ao carregar artigos:", error);
+      res.redirect("/");
+    });
+});
+
 module.exports = router;
