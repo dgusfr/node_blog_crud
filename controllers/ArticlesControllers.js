@@ -137,7 +137,7 @@ router.post("/articles/update", (req, res) => {
 //Rota de paginação
 router.get("/articles/page/:num", (req, res) => {
   const page = parseInt(req.params.num) || 1;
-  const limit = 4; // Número de artigos por página
+  const limit = 4;
   const offset = (page - 1) * limit; // Calcula o offset
 
   Article.findAndCountAll({
