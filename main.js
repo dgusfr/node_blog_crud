@@ -62,6 +62,33 @@ app.get("/", (req, res) => {
     });
 });
 
+//Rota de artigos
+app.get("/:slug", (req, res) => {
+  const slug = req.params.slug;
+
+  Article.findOne({
+    where: { slug: slug },
+  })
+    .then((article) => {
+      if (article) {
+        Category.findAll()
+          .then((categories) => {
+            res.render("article", { article: article, categories: categories });
+          })
+          .catch((error) => {
+            console.error("Erro ao carregar categorias:", error);
+            res.redirect("/");
+          });
+      } else {
+        res.redirect("/");
+      }
+    })
+    .catch((error) => {
+      console.error("Erro ao buscar artigo:", error);
+      res.redirect("/");
+    });
+});
+
 // Inicialização do servidor
 app.listen(3000, () => {
   console.log("O servidor está rodando na porta 3000!");
