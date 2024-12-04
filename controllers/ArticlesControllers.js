@@ -76,4 +76,32 @@ router.post("/admin/articles/delete", (req, res) => {
   }
 });
 
+//Rota de edição de artigos
+router.get("/admin/articles/edit/:id", (req, res) => {
+  const id = req.params.id;
+
+  Article.findByPk(id)
+    .then((article) => {
+      if (article) {
+        Category.findAll()
+          .then((categories) => {
+            res.render("admin/articles/edit", {
+              categories: categories,
+              article: article,
+            });
+          })
+          .catch((error) => {
+            console.error("Erro ao carregar categorias:", error);
+            res.redirect("/admin/articles");
+          });
+      } else {
+        res.redirect("/admin/articles");
+      }
+    })
+    .catch((error) => {
+      console.error("Erro ao buscar artigo:", error);
+      res.redirect("/admin/articles");
+    });
+});
+
 module.exports = router;
