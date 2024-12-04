@@ -1,0 +1,31 @@
+<%- include("../../partials/header.ejs") %>
+  <%- include("../../partials/navbar.ejs") %>
+
+    <div class="container">
+      <hr>
+      <div class="card mt-5">
+        <div class="card-header">
+          <h2>Criação de Usuário</h2>
+        </div>
+        <div class="card-body">
+          <form action="/users/create" method="POST">
+            <!-- Campo de E-mail -->
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input id="email" class="form-control" name="email" type="email" placeholder="email@exemplo.com" required>
+            </div>
+            <br>
+            <!-- Campo de Senha -->
+            <div class="form-group">
+              <label for="password">Senha</label>
+              <input id="password" class="form-control" name="password" type="password" placeholder="******" minlength="6" required>
+            </div>
+            <br>
+            <!-- Botão de Submissão -->
+            <button type="submit" class="btn btn-success btn-block">Criar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <%- include("../../partials/footer.ejs") %>
