@@ -1,31 +1,45 @@
-<%- include("../../partials/header.ejs") %>
-  <%- include("../../partials/navbar.ejs") %>
+<%- include ../../partials/header.ejs %>
+  <%- include ../../partials/navbar.ejs %>
 
     <div class="container">
       <hr>
-      <div class="card mt-5">
-        <div class="card-header">
-          <h2>Criação de Usuário</h2>
-        </div>
-        <div class="card-body">
-          <form action="/users/create" method="POST">
-            <!-- Campo de E-mail -->
-            <div class="form-group">
-              <label for="email">E-mail</label>
-              <input id="email" class="form-control" name="email" type="email" placeholder="email@exemplo.com" required>
-            </div>
-            <br>
-            <!-- Campo de Senha -->
-            <div class="form-group">
-              <label for="password">Senha</label>
-              <input id="password" class="form-control" name="password" type="password" placeholder="******" minlength="6" required>
-            </div>
-            <br>
-            <!-- Botão de Submissão -->
-            <button type="submit" class="btn btn-success btn-block">Criar</button>
-          </form>
-        </div>
-      </div>
+      <h2>Usuários</h2>
+      <a class="btn btn-success" href="/admin/users/create">Criar novo usuário</a>
+      <hr>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (users.length> 0) { %>
+            <% users.forEach(user=> { %>
+              <tr>
+                <td>
+                  <%= user.id %>
+                </td>
+                <td>
+                  <%= user.email %>
+                </td>
+                <td>
+                  <a href="/admin/users/edit/<%= user.id %>" class="btn btn-warning btn-sm">Editar</a>
+                  <form action="/admin/users/delete" method="POST" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?');">
+                    <input type="hidden" name="id" value="<%= user.id %>">
+                    <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                  </form>
+                </td>
+              </tr>
+              <% }) %>
+                <% } else { %>
+                  <tr>
+                    <td colspan="3" class="text-center">Nenhum usuário cadastrado.</td>
+                  </tr>
+                  <% } %>
+        </tbody>
+      </table>
     </div>
 
-    <%- include("../../partials/footer.ejs") %>
+    <%- include ../../partials/footer.ejs %>
