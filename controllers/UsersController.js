@@ -17,7 +17,7 @@ router.get("/admin/users", (req, res) => {
 
 // Página de criação de usuário
 router.get("/admin/users/create", (req, res) => {
-  res.render("admin/users/create");
+  rres.render("admin/users/create");
 });
 
 // Rota para criar usuário
@@ -37,7 +37,8 @@ router.post("/users/create", (req, res) => {
         })
           .then(() => {
             console.log(`Usuário ${email} criado com sucesso!`);
-            res.redirect("/");
+            // Após cadastro, redirecionar para a página de login
+            res.redirect("/login");
           })
           .catch((error) => {
             console.error("Erro ao criar usuário:", error);
