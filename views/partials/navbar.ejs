@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="/">
-        GuiaPress
+        <img src="/images/conquisti.png" alt="ConquisTi" width="auto" height="30">
     </a>
 
     <ul class="navbar-nav mr-auto">
@@ -13,14 +13,9 @@
     </ul>
 
     <ul class="navbar-nav ml-auto">
-        <% if (typeof user !=='undefined' && user) { %>
-            <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
-            </li>
-            <% } else { %>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
-                </li>
-                <% } %>
+        <li class="nav-item">
+            <!-- Ao clicar em Logout, o usuário encerra a sessão e volta à home -->
+            <a class="nav-link" href="/logout">Logout</a>
+        </li>
     </ul>
 </nav>

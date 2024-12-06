@@ -75,6 +75,7 @@ router.post("/authenticate", (req, res) => {
             email: user.email,
           };
           console.log(`Usuário autenticado: ${email}`);
+          // Redireciona para a página de administração de artigos
           res.redirect("/admin/articles");
         } else {
           console.log("Senha incorreta.");
@@ -94,6 +95,7 @@ router.post("/authenticate", (req, res) => {
 // Logout
 router.get("/logout", (req, res) => {
   req.session.user = undefined;
+  console.log("Usuário desconectado.");
   res.redirect("/");
 });
 
