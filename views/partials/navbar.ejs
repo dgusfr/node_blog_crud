@@ -1,14 +1,31 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="/">
-        <img src="/images/conquisti.png" alt="ConquisTi" width=auto height="30">
-    </a>
+<%- include("../../partials/header.ejs") %>
+    <%- include("../../partials/navbar.ejs") %>
 
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="/admin/categories">Categorias</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/admin/articles">Artigos</a>
-        </li>
-    </ul>
-</nav>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="/">
+                GuiaPress
+            </a>
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/categories">Categorias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/articles">Artigos</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <% if (typeof user !=='undefined' && user) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                    <% } else { %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Login</a>
+                        </li>
+                        <% } %>
+            </ul>
+        </nav>
+
+        <%- include("../../partials/footer.ejs") %>
