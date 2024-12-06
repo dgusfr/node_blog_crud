@@ -17,6 +17,7 @@ const User = require("./models/User");
 // Configurações
 app.set("view engine", "ejs");
 
+//Sessions
 app.use(
   session({
     secret: "sua-chave-secreta",
