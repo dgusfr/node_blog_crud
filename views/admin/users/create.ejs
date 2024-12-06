@@ -3,43 +3,26 @@
 
     <div class="container">
       <hr>
-      <h2>Usuários</h2>
-      <a class="btn btn-success" href="/admin/users/create">Criar novo usuário</a>
-      <hr>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Email</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% if (users.length> 0) { %>
-            <% users.forEach(user=> { %>
-              <tr>
-                <td>
-                  <%= user.id %>
-                </td>
-                <td>
-                  <%= user.email %>
-                </td>
-                <td>
-                  <a href="/admin/users/edit/<%= user.id %>" class="btn btn-warning btn-sm">Editar</a>
-                  <form action="/admin/users/delete" method="POST" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?');">
-                    <input type="hidden" name="id" value="<%= user.id %>">
-                    <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
-                  </form>
-                </td>
-              </tr>
-              <% }) %>
-                <% } else { %>
-                  <tr>
-                    <td colspan="3" class="text-center">Nenhum usuário cadastrado.</td>
-                  </tr>
-                  <% } %>
-        </tbody>
-      </table>
+      <div class="card mt-5">
+        <div class="card-header">
+          <h2>Criação de Usuário</h2>
+        </div>
+        <div class="card-body">
+          <form action="/users/create" method="POST">
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input class="form-control" id="email" name="email" type="email" placeholder="email@exemplo.com" required>
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="password">Senha</label>
+              <input class="form-control" id="password" name="password" type="password" placeholder="******" required>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-success btn-block">Cadastrar</button>
+          </form>
+        </div>
+      </div>
     </div>
 
     <%- include("../../partials/footer.ejs") %>
